@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_lebanon_custom.PaymentScreenMethods" t-inherit="point_of_sale.PaymentScreenMethods" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('paymentmethods')]" position="replace">
+            <div class="paymentmethods lebanon-payment-buckets d-flex flex-column gap-3 p-2">
+                <button
+                    type="button"
+                    class="btn btn-success btn-lg lebanon-pay-bucket py-4"
+                    t-on-click="() => this.lebanonQuickPay('usd')"
+                >Cash USD</button>
+                <button
+                    type="button"
+                    class="btn btn-primary btn-lg lebanon-pay-bucket py-4"
+                    t-on-click="() => this.lebanonQuickPay('lbp')"
+                >Cash LBP</button>
+                <button
+                    type="button"
+                    class="btn btn-dark btn-lg lebanon-pay-bucket py-4"
+                    t-on-click="() => this.lebanonQuickPay('card')"
+                >Card</button>
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary btn-lg"
+                    t-on-click="() => this.lebanonOpenAllPaymentMethods()"
+                >Other methods</button>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-name="pos_lebanon_custom.PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('payment-screen')]" position="inside">
+            <div class="lebanon-rate-bar w-100 py-1 px-3 text-center border-top small text-muted order-last" style="flex-basis: 100%;">
+                <span>1 USD = </span>
+                <span class="fw-bold text-primary" t-esc="formatLebanonRate()"/>
+                <span> L.L.</span>
+            </div>
+        </xpath>
+    </t>
+</templates>

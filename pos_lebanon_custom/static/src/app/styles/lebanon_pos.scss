@@ -1,0 +1,50 @@
+/* Lebanon POS layout & payment buckets */
+
+.lebanon-product-screen.product-screen {
+    min-height: 0;
+}
+
+.lebanon-pos-right-sidebar {
+    width: 11.5rem;
+    min-width: 11.5rem;
+    max-width: 14rem;
+    border-left: 1px solid var(--bs-border-color, #dee2e6);
+    background: var(--bs-body-bg, #fff);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.lebanon-pos-right-sidebar .category-list,
+.lebanon-pos-right-sidebar .product-list {
+    grid-template-columns: 1fr !important;
+    max-height: 42vh;
+    overflow-y: auto;
+}
+
+.lebanon-wallet-stack .control-buttons {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.lebanon-rate-bar {
+    flex-shrink: 0;
+    border-top: 1px solid var(--bs-border-color, #dee2e6);
+    background: var(--bs-secondary-bg, #f8f9fa);
+    font-size: 0.9rem;
+}
+
+.lebanon-payment-buckets .lebanon-pay-bucket {
+    min-height: 4.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.lebanon-dual-price {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.lebanon-product-card-price {
+    font-size: 0.85rem;
+}
