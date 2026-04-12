@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_lebanon_custom.LoginScreen" t-inherit="point_of_sale.LoginScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('login-body')]" position="replace">
+            <div class="login-body d-flex flex-column flex-md-row gap-3 m-auto w-100" style="max-width: 32rem;">
+                <form class="card shadow-sm p-4 w-100" t-on-submit.prevent="onLebanonSubmit">
+                    <h2 class="h4 mb-3 text-center">Point of Sale Login</h2>
+                    <div class="mb-3">
+                        <label class="form-label" for="lebanon_login_user">User name</label>
+                        <input
+                            id="lebanon_login_user"
+                            type="text"
+                            autocomplete="username"
+                            class="form-control form-control-lg"
+                            t-model="lebanonState.lebanonLogin"
+                            placeholder="e.g. cashier1"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="lebanon_login_pass">Password</label>
+                        <input
+                            id="lebanon_login_pass"
+                            type="password"
+                            autocomplete="current-password"
+                            class="form-control form-control-lg"
+                            t-model="lebanonState.lebanonPassword"
+                        />
+                    </div>
+                    <p t-if="lebanonState.lebanonError" class="text-danger small" t-esc="lebanonState.lebanonError"/>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3" t-att-disabled="lebanonState.lebanonBusy">
+                        <t t-if="lebanonState.lebanonBusy">Signing in…</t>
+                        <t t-else="">Log in</t>
+                    </button>
+                </form>
+            </div>
+        </xpath>
+    </t>
+</templates>
