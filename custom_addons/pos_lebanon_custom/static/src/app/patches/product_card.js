@@ -2,21 +2,25 @@
 
 import { patch } from "@web/core/utils/patch";
 import { ProductCard } from "@point_of_sale/app/components/product_card/product_card";
-import { usePos } from "@point_of_sale/app/hooks/pos_hook";
 import { formatDualUsdLbpFromConfig } from "../utils/lebanon_currency";
 
-// ProductCard has NO setup() in core OWL component — we define it fresh here.
+/**
+ * NOTE: ProductCard has NO setup() in core and extends bare Component.
+ * We MUST NOT add setup() or call any OWL hooks here — that crashes the
+ * component lifecycle. Instead we read `pos` from `this.env.services`
+ * which is always available inside the POS app environment.
+ */
 patch(ProductCard.prototype, {
-    setup() {
-        // Component base has no setup, so do NOT call super.setup()
-        this._lbPos = usePos();
-    },
     get dualProductListPrice() {
-        const tmpl = this.props.product;
-        if (!tmpl || this.props.isComboPopup) {
+        if (this.props.isComboPopup) {
             return "";
         }
-        const pos = this._lbPos;
+        const tmpl = this.props.product;
+        if (!tmpl) {
+            return "";
+        }
+        // Access pos via the service registry on env — no hooks needed
+        const pos = this.env.services?.pos;
         if (!pos?.config) {
             return "";
         }
