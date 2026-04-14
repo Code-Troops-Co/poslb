@@ -6,19 +6,9 @@
             <attribute name="class" add="lebanon-product-screen" separator=" "/>
         </xpath>
 
-        <!-- Left pane: make it a fixed flex-column that never overflows vertically -->
-        <xpath expr="//div[hasclass('leftpane')]" position="attributes">
-            <attribute name="class" add="lebanon-leftpane" separator=" "/>
-        </xpath>
-
         <!-- Remove the default horizontal control-buttons row (moved to sidebar) -->
         <xpath expr="//div[hasclass('leftpane')]//div[hasclass('control-buttons')]" position="replace">
             <div class="d-none" aria-hidden="true"/>
-        </xpath>
-
-        <!-- Always show numpad when order has items + a line selected OR just items (for reliable visibility) -->
-        <xpath expr="//Numpad" position="attributes">
-            <attribute name="t-if">!currentOrder?.isEmpty()</attribute>
         </xpath>
 
         <!-- Desktop: remove CategorySelector from rightpane top (moved to sidebar) -->

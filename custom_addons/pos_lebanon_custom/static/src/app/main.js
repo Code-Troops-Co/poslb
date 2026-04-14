@@ -12,9 +12,6 @@ import "./patches/login_screen";
 import "./patches/orderline";
 import "./patches/order_display";
 
-// Product card dual price
-import "./patches/product_card";
-
 // Payment flow
 import "./patches/payment_screen";
 import "./patches/payment_lines";

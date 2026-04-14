@@ -10,20 +10,8 @@
 }
 
 // --------------------------------------------------------------------------
-// Left pane: keep Odoo stock flex layout, just ensure numpad stays visible
+// Left pane: no overrides — Odoo's stock flex layout handles numpad correctly
 // --------------------------------------------------------------------------
-// Odoo's leftpane is already d-flex flex-column. OrderDisplay's
-// .order-container has overflow-y-auto. We only need to ensure the
-// OrderSummary (which wraps OrderDisplay) doesn't grow unbounded.
-.lebanon-product-screen .lebanon-leftpane {
-    // Ensure the leftpane children don't overflow — let order list scroll
-    > *:first-child {
-        // OrderSummary component — let it shrink so .pads always fits
-        min-height: 0;
-        flex: 1 1 0 !important;
-        overflow: hidden;
-    }
-}
 
 // --------------------------------------------------------------------------
 // Right sidebar (desktop only)
