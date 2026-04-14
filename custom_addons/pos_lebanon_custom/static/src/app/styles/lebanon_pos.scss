@@ -103,11 +103,18 @@
 
 // Product card secondary price line
 .lebanon-product-card-price {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     line-height: 1.2;
     color: var(--bs-secondary-color, #6c757d);
     font-variant-numeric: tabular-nums;
-    white-space: nowrap;
+    // Allow wrapping on very narrow cards rather than overflowing
+    white-space: normal;
+    word-break: break-all;
+    overflow: hidden;
+    // Subtle separator from the card body above
+    border-top: 1px solid var(--bs-border-color-translucent, rgba(0,0,0,.08));
+    background: var(--bs-secondary-bg, #f8f9fa);
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 
 // Popup price extra dual badge

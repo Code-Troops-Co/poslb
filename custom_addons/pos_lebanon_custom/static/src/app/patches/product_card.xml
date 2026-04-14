@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <t t-name="pos_lebanon_custom.ProductCard" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('product-content')]//div[hasclass('product-name')]" position="after">
+        <!--
+            Inject the dual price AFTER the product-content div (outside it),
+            so it sits below the card body without disrupting the inner flex layout.
+        -->
+        <xpath expr="//div[hasclass('product-content')]" position="after">
             <div
-                t-if="!props.isComboPopup"
-                class="lebanon-product-card-price text-muted fw-semibold mt-1"
+                t-if="!props.isComboPopup and dualProductListPrice"
+                class="lebanon-product-card-price px-2 pb-1"
                 t-out="dualProductListPrice"
             />
         </xpath>

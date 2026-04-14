@@ -26,3 +26,4 @@ import "./patches/product_configurator_popup";
 import "./patches/combo_configurator_popup";
 import "./patches/optional_products_popup";
 import "./patches/product_info_popup";
+import "./patches/opening_control_popup";

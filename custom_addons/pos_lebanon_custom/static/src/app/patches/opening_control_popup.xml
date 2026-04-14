@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!--
+        Patch OpeningControlPopup: show the LBP equivalent of the opening
+        cash balance as a helper line beneath the USD input.
+    -->
+    <t t-name="pos_lebanon_custom.OpeningControlPopup"
+       t-inherit="point_of_sale.OpeningControlPopup"
+       t-inherit-mode="extension">
+
+        <xpath expr="//div[hasclass('cash-input-sub-section')]" position="after">
+            <div t-if="openingCashLbp" class="mt-1 small text-muted lebanon-info-dual">
+                ≈ <span class="fw-semibold text-primary" t-out="openingCashLbp"/>
+            </div>
+        </xpath>
+
+    </t>
+</templates>
