@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!--
+        Patch ProductInfoPopup: inject LBP sub-line beneath the
+        dialog header price (the h3.section-title that is the FIRST child).
+        We use position="after" on the header h3 wrapper which is safe.
+    -->
+    <t t-name="pos_lebanon_custom.ProductInfoPopup"
+       t-inherit="point_of_sale.ProductInfoPopup"
+       t-inherit-mode="extension">
+
+        <!--
+            The header block renders:
+              <h3 class="section-title" t-out="... + formatCurrency(price_with_tax)"/>
+            We inject the LBP dual line right after it.
+        -->
+        <xpath expr="//h3[hasclass('section-title')][1]" position="after">
+            <div t-if="dualHeaderPrice" class="text-muted small mb-1 lebanon-info-dual"
+                 t-out="dualHeaderPrice"/>
+        </xpath>
+
+    </t>
+</templates>

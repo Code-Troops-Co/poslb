@@ -6,6 +6,7 @@ import { getLebanonLbpPerUsd } from "../utils/lebanon_currency";
 
 patch(ProductScreen.prototype, {
     formatLebanonRate() {
-        return getLebanonLbpPerUsd(this.pos.config);
+        const rate = getLebanonLbpPerUsd(this.pos.config);
+        return rate.toLocaleString();
     },
 });

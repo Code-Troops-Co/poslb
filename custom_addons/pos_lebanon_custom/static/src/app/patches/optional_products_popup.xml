@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!--
+        Add dual USD|LBP price under each optional product name.
+    -->
+    <t t-name="pos_lebanon_custom.OptionalProductPopup"
+       t-inherit="point_of_sale.OptionalProductPopup"
+       t-inherit-mode="extension">
+
+        <xpath expr="//h5[hasclass('product-name')]" position="after">
+            <div class="lebanon-info-dual small"
+                 t-out="dualOptionalPrice(optional_product.product_tmpl_id)"/>
+        </xpath>
+
+    </t>
+</templates>

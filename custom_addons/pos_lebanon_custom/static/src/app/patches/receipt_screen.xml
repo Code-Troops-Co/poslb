@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <t t-name="pos_lebanon_custom.ReceiptScreen" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension">
+
+        <!-- Show order total in LBP next to the USD amount in the success banner -->
+        <xpath expr="//div[hasclass('fs-4') and hasclass('fw-bold')]" position="after">
+            <div t-if="dualReceiptTotal" class="fs-5 text-muted lebanon-info-dual mt-1">
+                <t t-out="dualReceiptTotal"/>
+            </div>
+        </xpath>
+
+        <!-- WhatsApp send button -->
         <xpath expr="//div[hasclass('receipt-options')]" position="inside">
             <button
                 type="button"
-                class="btn btn-success btn-lg w-100 py-3"
+                class="lebanon-whatsapp-btn btn btn-success btn-lg w-100 py-3"
                 t-on-click="() => this.sendReceiptViaWhatsApp()"
             >
                 <i class="fa fa-whatsapp me-2" aria-hidden="true"/>
                 Send receipt on WhatsApp
             </button>
         </xpath>
+
     </t>
 </templates>
