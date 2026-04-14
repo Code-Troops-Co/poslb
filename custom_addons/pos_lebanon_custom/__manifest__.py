@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Lebanon POS Customizations",
-    "version": "19.0.1.0.2",
+    "version": "19.0.2.0.2",
     "author": "Code Troops",
     "category": "Point of Sale",
     "summary": "Dual-currency (USD/LBP) and Lebanon-specific POS foundations",
