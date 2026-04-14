@@ -3,7 +3,6 @@
 import "./styles/lebanon_pos.scss";
 
 // Core screens
-import "./patches/action_pad";
 import "./patches/receipt_screen";
 import "./patches/login_screen";
 

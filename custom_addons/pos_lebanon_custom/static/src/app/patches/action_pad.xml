@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <!--
-        Patch ActionpadWidget: add a LBP sub-line inside the Pay button
-        so cashiers can see the total in both currencies at a glance.
-    -->
-    <t t-name="pos_lebanon_custom.ActionpadWidget"
-       t-inherit="point_of_sale.ActionpadWidget"
-       t-inherit-mode="extension">
-
-        <xpath expr="//button[hasclass('pay-order-button')]" position="replace">
-            <button
-                class="pay pay-order-button button btn btn-primary btn-lg py-3 d-flex flex-column align-items-center justify-content-center flex-fill"
-                t-att-class="{'col-3': showFastPaymentMethods}"
-                t-on-click="props.actionToTrigger">
-                <span t-out="props.actionName"/>
-                <span t-if="dualPayTotal" class="lebanon-actionpad-lbp small opacity-75 mt-1" t-out="dualPayTotal"/>
-            </button>
-        </xpath>
-
-    </t>
+    <!-- Emergency stability mode: keep ActionPad 100% stock -->
 </templates>
