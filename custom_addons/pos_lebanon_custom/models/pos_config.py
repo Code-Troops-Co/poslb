@@ -15,4 +15,7 @@ class PosConfig(models.Model):
 
     @api.model
     def _load_pos_data_fields(self, config):
-        return super()._load_pos_data_fields(config) + ["lebanon_lbp_per_usd"]
+        fields = super()._load_pos_data_fields(config) or []
+        if "lebanon_lbp_per_usd" not in fields:
+            return list(fields) + ["lebanon_lbp_per_usd"]
+        return list(fields)

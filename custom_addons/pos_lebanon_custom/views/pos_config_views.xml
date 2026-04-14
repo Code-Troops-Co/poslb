@@ -5,15 +5,15 @@
         <field name="model">pos.config</field>
         <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@groups='base.group_system']" position="before">
-                <div class="row mt16 o_settings_container">
-                    <setting
-                        string="Lebanon dual currency"
-                        help="LBP per one US dollar, used for POS display and Cash LBP (configure payment methods separately)."
-                    >
-                        <field name="lebanon_lbp_per_usd"/>
-                    </setting>
-                </div>
+            <!-- Stable anchor: title block always exists on PoS config form -->
+            <xpath expr="//div[@id='title']" position="after">
+                <group string="Lebanon dual currency" colspan="2">
+                    <field
+                        name="lebanon_lbp_per_usd"
+                        string="LBP per 1 USD"
+                        help="LBP per one US dollar for POS display and Cash LBP (configure payment methods separately)."
+                    />
+                </group>
             </xpath>
         </field>
     </record>
