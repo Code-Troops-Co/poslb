@@ -1,5 +1,15 @@
 # Odoo.sh Fix: `pos_lebanon_custom` shows **Uninstallable**
 
+## CRITICAL: duplicate module folders (fixed in this repo)
+
+If the **same technical name** exists twice on the addons path (example: `user/pos_lebanon_custom/` **and** `user/custom_addons/pos_lebanon_custom/`), Odoo can load the **wrong** copy or mark the module as **uninstallable**.
+
+This repository previously had a **stale** `pos_lebanon_custom/` at the **repository root** *and* `custom_addons/pos_lebanon_custom/`. The root copy was older (e.g. `18.0` manifest + old XML).
+
+**Fix applied:** the duplicate root folder `pos_lebanon_custom/` was **removed**. Keep **only** `custom_addons/pos_lebanon_custom/`, then push to Odoo.sh and rebuild.
+
+---
+
 ## What your screenshots prove
 - `pos_lebanon_custom` is not failing first.
 - Its dependency `point_of_sale` is shown as **Uninstallable**.
@@ -107,7 +117,7 @@ Then in the UI: **Apps → Update Apps List** again.
 
 ### 3) Bump addon version + push (forces Odoo.sh to rebuild metadata)
 
-The addon version in manifest is **19.0.1.0.0**. Push, wait for **green build**, open that build URL, repeat step (1).
+The addon version in manifest is **19.0.1.0.1** (after duplicate removal). Push, wait for **green build**, open that build URL, repeat step (1).
 
 ### 4) If still stuck: reset the module row (dev DB only)
 
@@ -131,6 +141,6 @@ Your addon must be visible under `/src/user/...` on the addons path. If it is ne
 
 ## Code fixes shipped in repo (may help installability)
 
-- **19.0.1.0.0**: manifest series aligned with Odoo 19; safer `_load_pos_data_fields()` merge.
+- **19.0.1.0.1**: removed duplicate root `pos_lebanon_custom/`; manifest aligned with Odoo 19; safer `_load_pos_data_fields()` merge.
 - **pos_config view**: inherit uses `//div[@id='title']` + plain `<group>` (avoids fragile `<setting>` xpath).
 
