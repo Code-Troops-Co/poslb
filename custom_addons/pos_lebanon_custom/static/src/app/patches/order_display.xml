@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="pos_lebanon_custom.OrderDisplay" t-inherit="point_of_sale.OrderDisplay" t-inherit-mode="extension">
-        <xpath expr="//span[hasclass('subtotal')]" position="replace">
-            <span class="subtotal lebanon-dual-price" t-out="dualSubtotal"/>
-        </xpath>
-        <xpath expr="//span[hasclass('tax')]" position="replace">
-            <span class="tax lebanon-dual-price" t-out="dualTaxes"/>
-        </xpath>
-        <xpath expr="//span[hasclass('total')]" position="replace">
-            <span class="total lebanon-dual-price" t-out="dualTotal"/>
-        </xpath>
-    </t>
+    <!-- Disabled temporarily for runtime stability -->
 </templates>

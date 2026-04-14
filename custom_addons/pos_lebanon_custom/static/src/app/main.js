@@ -8,10 +8,6 @@ import "./patches/action_pad";
 import "./patches/receipt_screen";
 import "./patches/login_screen";
 
-// Order / orderline dual currency
-import "./patches/orderline";
-import "./patches/order_display";
-
 // Payment flow
 import "./patches/payment_screen";
 import "./patches/payment_lines";
