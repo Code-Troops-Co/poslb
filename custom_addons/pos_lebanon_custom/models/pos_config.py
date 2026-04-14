@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PosConfig(models.Model):
@@ -12,10 +12,3 @@ class PosConfig(models.Model):
         default=89500.0,
         help="Display and Cash LBP conversion: multiply USD amounts by this rate.",
     )
-
-    @api.model
-    def _load_pos_data_fields(self, config):
-        fields = super()._load_pos_data_fields(config) or []
-        if "lebanon_lbp_per_usd" not in fields:
-            return list(fields) + ["lebanon_lbp_per_usd"]
-        return list(fields)
