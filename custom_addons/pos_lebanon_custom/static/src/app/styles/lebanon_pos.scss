@@ -10,24 +10,18 @@
 }
 
 // --------------------------------------------------------------------------
-// Left pane: CRITICAL – prevent vertical scroll so numpad is always visible
+// Left pane: keep Odoo stock flex layout, just ensure numpad stays visible
 // --------------------------------------------------------------------------
+// Odoo's leftpane is already d-flex flex-column. OrderDisplay's
+// .order-container has overflow-y-auto. We only need to ensure the
+// OrderSummary (which wraps OrderDisplay) doesn't grow unbounded.
 .lebanon-product-screen .lebanon-leftpane {
-    // The leftpane must never scroll as a whole; inner orderlines list scrolls
-    overflow: hidden !important;
-    display: flex;
-    flex-direction: column;
-
-    // The orderline list container scrolls independently (Odoo class: order-container)
-    .order-container {
-        flex: 1 1 0;
-        overflow-y: auto;
+    // Ensure the leftpane children don't overflow — let order list scroll
+    > *:first-child {
+        // OrderSummary component — let it shrink so .pads always fits
         min-height: 0;
-    }
-
-    // Pad area (numpad + action buttons) stays pinned at the bottom
-    .pads {
-        flex-shrink: 0;
+        flex: 1 1 0 !important;
+        overflow: hidden;
     }
 }
 

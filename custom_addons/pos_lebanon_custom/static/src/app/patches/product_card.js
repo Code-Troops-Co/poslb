@@ -2,40 +2,37 @@
 
 import { patch } from "@web/core/utils/patch";
 import { ProductCard } from "@point_of_sale/app/components/product_card/product_card";
-import { formatDualUsdLbpFromConfig } from "../utils/lebanon_currency";
+import {
+    getLebanonLbpPerUsd,
+    usdToLbp,
+    formatLbpPlain,
+} from "../utils/lebanon_currency";
 
 /**
- * NOTE: ProductCard has NO setup() in core and extends bare Component.
- * We MUST NOT add setup() or call any OWL hooks here — that crashes the
- * component lifecycle. Instead we read `pos` from `this.env.services`
- * which is always available inside the POS app environment.
+ * ProductCard extends bare Component with NO setup().
+ * We MUST NOT add setup() or call any OWL hooks.
+ * We access pos store via this.env.services which is safe.
+ * We use list_price directly — no getPrice() calls — to avoid
+ * any method-chain crashes from pricelist/variant resolution.
  */
 patch(ProductCard.prototype, {
     get dualProductListPrice() {
         if (this.props.isComboPopup) {
             return "";
         }
-        const tmpl = this.props.product;
-        if (!tmpl) {
+        const product = this.props.product;
+        if (!product) {
             return "";
         }
-        // Access pos via the service registry on env — no hooks needed
-        const pos = this.env.services?.pos;
+        const pos = this.env?.services?.pos;
         if (!pos?.config) {
             return "";
         }
-        try {
-            const order = pos.getOrder();
-            const pricelist = order?.pricelist_id;
-            const price = tmpl.getPrice(pricelist, 1, 0, false, false);
-            return formatDualUsdLbpFromConfig(
-                pos.config,
-                price,
-                this.env.utils,
-                pos.currency?.id
-            );
-        } catch {
+        const price = product.list_price;
+        if (price == null || price === 0) {
             return "";
         }
+        const rate = getLebanonLbpPerUsd(pos.config);
+        return formatLbpPlain(usdToLbp(price, rate));
     },
 });
