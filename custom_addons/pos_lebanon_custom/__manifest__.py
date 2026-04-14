@@ -1,7 +1,7 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 {
     "name": "Lebanon POS Customizations",
-    "version": "19.0.2.0.0",
+    "version": "19.0.2.0.1",
     "author": "Code Troops",
     "category": "Point of Sale",
     "summary": "Lebanon POS: configurable USD to LBP rate + POS login (minimal frontend)",
