@@ -11,6 +11,14 @@ const superLineScreenValuesGet = Object.getOwnPropertyDescriptor(
 ).get;
 
 patch(Orderline.prototype, {
+    _lbCurrencyId() {
+        return (
+            this.line?.currency?.id ||
+            this.line?.order_id?.currency_id?.id ||
+            this.pos?.currency?.id ||
+            this.env?.services?.pos?.currency?.id
+        );
+    },
     get dualLinePrice() {
         const vals = superLineScreenValuesGet.call(this);
         const line = this.line;
@@ -24,7 +32,7 @@ patch(Orderline.prototype, {
             line.order_id.config_id,
             line.displayPrice,
             this.env.utils,
-            line.currency.id
+            this._lbCurrencyId()
         );
     },
     get dualDisplayPriceUnit() {
@@ -37,7 +45,7 @@ patch(Orderline.prototype, {
             line.order_id.config_id,
             line.displayPriceUnit,
             this.env.utils,
-            line.currency.id
+            this._lbCurrencyId()
         );
         return `${dualUnit} / ${line.product_id?.uom_id?.name || ""}`;
     },
@@ -50,7 +58,7 @@ patch(Orderline.prototype, {
             line.order_id.config_id,
             line.displayPriceNoDiscount,
             this.env.utils,
-            line.currency.id
+            this._lbCurrencyId()
         );
     },
 });
