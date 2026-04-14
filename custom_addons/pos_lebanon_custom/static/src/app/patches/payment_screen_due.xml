@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_lebanon_custom.PaymentScreenDue" t-inherit="point_of_sale.PaymentScreenDue" t-inherit-mode="extension">
+        <xpath expr="//PriceFormatter" position="replace">
+            <div
+                class="total text-center text-dark fw-bold lebanon-dual-price"
+                t-out="dualTotalDue"
+                t-att-style="!ui.isSmall? 'font-size: 96px;' : 'font-size: 48px;'"
+            />
+        </xpath>
+    </t>
+</templates>
